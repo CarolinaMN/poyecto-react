@@ -7,21 +7,31 @@ class Welcome extends Component{
 
         this.state = {
             title : "Hola Mundo",
-            title2: "Hola Compañeros"
+            title2: "Hola Compañeros",
+            count: 0
         }
     }
 
     change = () =>{
         this.setState({title: "Hola"});
+
+
+        this.setState({count: 1});
     }
     
     componentDidMount() {
-        
         setTimeout(() => {
             this.setState({title: "Esto es una prueba"})
-            alert("Monstrando un did Mount");
+            // alert("Monstrando un did Mount");
         }, 3000);
-        
+    }
+
+    componentDidUpdate() {
+        // alert("Se cambió el estado Title");
+    }
+
+    componentWillUnmount(){
+        alert("Se desmonto el componente Welcome")
     }
 
     render() {

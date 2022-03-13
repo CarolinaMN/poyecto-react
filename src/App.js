@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Title from './Title';
 import Welcome from './Welcome';
-import Counter from './ComponentFuntion/Counter';
-import Products from './ComponentFuntion/Products';
+import Counter from './ComponentFunction/Counter';
+import Products from './ComponentFunction/Products';
 
 class App extends Component {
  render() {

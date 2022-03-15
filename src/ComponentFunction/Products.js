@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const arrayProducts = 
 [{
@@ -16,9 +16,20 @@ const arrayProducts =
  }];
 
 
-function Products() {
+function Products(props) {
 
     const [product, setProduct] = useState(arrayProducts);
+
+    const [valueInput, setValueInput] = useState('');
+    
+
+    useEffect(() => {
+        db();
+    }, []);
+
+    const db = () => {
+        alert("Actualizar base de datos")
+    }
 
     const deleteItem = () => {
         if (product.length > 0) {
@@ -28,14 +39,24 @@ function Products() {
         }
     }
 
+    const deleteI = (codigo) => {
+        let arrayTem = product.filter((art) => art.codigo !== codigo);
+        setProduct(arrayTem);
+    }
+
     return(
         <div>
+            <h1>{props.title}</h1>
+            <input type="text" onInput={(event) => setValueInput(event.target.value)}></input>
+            <p>{valueInput}</p>
+
             <table border="1">
                 <thead>
                     <tr>
                         <th>Código</th>
                         <th>Descripción</th>
                         <th>Precio</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,15 +71,17 @@ function Products() {
                             <td>
                                 {prod.precio}
                             </td>
+                            <td>
+                                <button onClick={() => deleteI(prod.codigo)}>Eliminar</button>
+                            </td>
                         </tr>
                     ))}
                     
                 </tbody>
             </table>
-
             <br/>
-
             <button onClick={deleteItem}>Eliminar ultima fila</button>
+            <button onClick={db}>Actualizar</button>
         </div>
     )
 

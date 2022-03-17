@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { ContextT } from '../context';
+import Counter from './Counter';
 
 const arrayProducts = 
 [{
@@ -21,10 +23,12 @@ function Products(props) {
     const [product, setProduct] = useState(arrayProducts);
 
     const [valueInput, setValueInput] = useState('');
+
+    const contextHook = useContext(ContextT);
     
 
     useEffect(() => {
-        db();
+        // db();
     }, []);
 
     const db = () => {
@@ -46,6 +50,7 @@ function Products(props) {
 
     return(
         <div>
+            <h1>{contextHook}</h1>
             <h1>{props.title}</h1>
             <input type="text" onInput={(event) => setValueInput(event.target.value)}></input>
             <p>{valueInput}</p>
@@ -82,6 +87,10 @@ function Products(props) {
             <br/>
             <button onClick={deleteItem}>Eliminar ultima fila</button>
             <button onClick={db}>Actualizar</button>
+            <br/>
+            <div>
+                <Counter></Counter>
+            </div>
         </div>
     )
 

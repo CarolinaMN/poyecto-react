@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { ContextT }  from './context';
 
 class Welcome extends Component{
     constructor(){
@@ -11,6 +11,8 @@ class Welcome extends Component{
             count: 0
         }
     }
+
+    static contextType = ContextT;
 
     change = () =>{
         this.setState({title: "Hola"});
@@ -37,6 +39,7 @@ class Welcome extends Component{
     render() {
         return (
             <div>
+                <h1>{this.context}</h1>
                 <h1>Hola {this.props.name}</h1>
                 <p>{this.state.title}</p>
                 <p>{this.state.title2}</p>

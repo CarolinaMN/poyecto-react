@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ContextT } from '../context';
 
 function Counter() {
     const [count, setCount] = useState(0);
     const [num, setNum] = useState([0, 0, 0, 0, 0]);
+
+    const contextHook = useContext(ContextT);
 
 
     const aleatorios = () => {
@@ -21,6 +24,7 @@ function Counter() {
 
     return(
         <div>
+            <h1>{contextHook}</h1>
             <button onClick={() => setCount(count + 1)}>Cambiar</button>
             <p>El contador es: {count}</p>
 

@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import Welcome from './Welcome';
+import { ContextT }  from './context';
+
+// export const ContextT = React.createContext("sdsd");
 
 class Title extends Component{
-    constructor(){
-        super();
-        this.state = {
-            comp : false
-        }
-    }
-
-
-    changeState = () => {
-        this.setState({
-            comp : true
-        });
-     }
-
+    static contextType = ContextT;
 
     render(){
-        return (
-            <div>
-                { this.state.comp == false ?  <Welcome name="Juan"></Welcome> : <></>}
-                <button onClick={this.changeState}>Ocultar</button>
-            </div>
-        
-        )
+      return(
+        <div>
+          <div>
+            <span>{this.context}</span>
+            <Welcome></Welcome>
+          </div>
+        </div>
+      )
     }
 }
+
+
 
 export default Title;

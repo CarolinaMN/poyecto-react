@@ -1,9 +1,13 @@
 import ListadoResultados from "./ListadoResultados";
 import { useState } from "react";
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Resultado() {
 
   const [operaciones, setOperacion] = useState([])
+  const [show, setShow] = useState(false);
+
+  const nav = useNavigate();
 
   function sumar(event) {
     event.preventDefault();
@@ -22,6 +26,10 @@ function Resultado() {
     event.target.valor2.value = ''
   }
 
+  function showComponent() {
+    nav('/changecolor/Color');
+  }
+
   return (
     <div>
       <form onSubmit={sumar}>
@@ -38,6 +46,14 @@ function Resultado() {
           <li>La suma de {elemento.valor1} y {elemento.valor2} es {elemento.resultado}</li>
         )}
       </ul>
+      <button onClick={() => setShow(true)}>Cambiar1</button>
+      <button onClick={showComponent}>Cambiar2</button>
+
+      { show ? 
+        <Navigate to="/welcome"></Navigate> : <p>Sin Componente</p>
+      }
+      
+
       
 
       {/* <ListadoResultados resultados={operaciones} /> */}

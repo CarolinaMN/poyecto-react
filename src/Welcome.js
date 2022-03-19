@@ -33,7 +33,7 @@ class Welcome extends Component{
     }
 
     componentWillUnmount(){
-        alert("Se desmonto el componente Welcome")
+        // alert("Se desmonto el componente Welcome")
     }
 
     render() {

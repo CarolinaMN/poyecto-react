@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function ChangeColor () {
     const [show, setShow] = useState(true);
@@ -14,6 +15,7 @@ function ChangeColor () {
 
 function MouseColor () {
     const [color, setColor] = useState('red');
+    const params = useParams();
 
     useEffect(() => {
         function onMouseMove(event){
@@ -35,7 +37,10 @@ function MouseColor () {
     console.log("Se esta renderizando")
 
     return(
-        <div style={{ height: "100vh", background: color}}>
+        <div>
+            <h1>{params.title}</h1>
+            <div style={{ height: "100vh", background: color}}>
+            </div>
         </div>
     )
 }

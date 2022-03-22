@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ContextT } from '../context';
 import Counter from './Counter';
+import axios from 'axios';
 
 const arrayProducts = 
 [{
@@ -20,7 +21,7 @@ const arrayProducts =
 
 function Products(props) {
 
-    const [product, setProduct] = useState(arrayProducts);
+    const [product, setProduct] = useState([]);
 
     const [valueInput, setValueInput] = useState('');
 
@@ -28,8 +29,16 @@ function Products(props) {
     
 
     useEffect(() => {
-        // db();
+       loadAll();
     }, []);
+
+    const loadAll = () => {
+        axios.get('http://localhost:3001/products').then(res => {
+           setProduct(res.data);
+        }).catch(error => {
+
+        });
+    }
 
     const db = () => {
         alert("Actualizar base de datos")
@@ -43,9 +52,14 @@ function Products(props) {
         }
     }
 
-    const deleteI = (codigo) => {
-        let arrayTem = product.filter((art) => art.codigo !== codigo);
-        setProduct(arrayTem);
+    const deleteI = (id) => {
+        // let arrayTem = product.filter((art) => art.codigo !== codigo);
+        axios.delete('http://localhost:3001/products/' + id).then(res => {
+            loadAll();
+        }).catch(error => {
+            alert("No se pudo elminar");
+        });
+        // setProduct(arrayTem);
     }
 
     return(
@@ -66,9 +80,9 @@ function Products(props) {
                 </thead>
                 <tbody>
                     { product.map( prod => (
-                        <tr key={prod.codigo}>
+                        <tr key={prod.id}>
                             <td>
-                                {prod.codigo}
+                                {prod.id}
                             </td>
                             <td>
                                 {prod.descripcion}
@@ -77,7 +91,7 @@ function Products(props) {
                                 {prod.precio}
                             </td>
                             <td>
-                                <button onClick={() => deleteI(prod.codigo)}>Eliminar</button>
+                                <button onClick={() => deleteI(prod.id)}>Eliminar</button>
                             </td>
                         </tr>
                     ))}
@@ -88,9 +102,6 @@ function Products(props) {
             <button onClick={deleteItem}>Eliminar ultima fila</button>
             <button onClick={db}>Actualizar</button>
             <br/>
-            <div>
-                <Counter></Counter>
-            </div>
         </div>
     )
 

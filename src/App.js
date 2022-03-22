@@ -24,6 +24,7 @@ class App extends Component {
                     <Link style={{margin: '10px'}} to="/welcome">Bienvenida</Link>
                     <Link style={{margin: '10px'}} to="/changecolor/Pagina-Con-Color">Color de Página</Link>
                     <Link style={{margin: '10px'}} to="/apis-axios">Peticiones</Link>
+                    <Link style={{margin: '10px'}} to="/products">Productos</Link>
                 </nav>
 
                 <Routes>
@@ -32,6 +33,7 @@ class App extends Component {
                     <Route path="/changecolor/:title"  element={<ChangeColor></ChangeColor>} ></Route>
                     <Route path="/coordenadas"  element={<Coordenada></Coordenada>} ></Route>
                     <Route path="/apis-axios"  element={<ApisAxios></ApisAxios>} ></Route>
+                    <Route path="/products"  element={<Products></Products>} ></Route>
                 </Routes>
             </BrowserRouter>
         
